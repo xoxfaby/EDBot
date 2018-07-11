@@ -6,6 +6,7 @@ channels_setup = {
     "platform":415190853578129408,
     "bot_testing":433253593332842507
 }
+roles_setup = ['pc','ps4','xbox','na','eu','aus']
 activities = [
     discord.Activity(type=discord.ActivityType.watching,name="the rocks"),
     discord.Activity(type=discord.ActivityType.watching,name="the asteroids"),

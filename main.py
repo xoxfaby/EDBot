@@ -8,6 +8,7 @@ from config import token
 from config import dev
 from config import activities
 from config import channels_setup
+from config import roles_setup
 
 client = discord.Client()
 client.built = False
@@ -87,12 +88,8 @@ async def status_changer():
         await client.change_presence(activity=choice(activities))
         await asyncio.sleep(60*60*3)
 
-roles_setup = ['pc','ps4','xbox','na','eu','aus']
 roles = {}
-
-
 channels={}
-
 commands={
     'metallic_finder':{
         '!':metallic_search
