@@ -7,6 +7,7 @@ from random import choice
 from config import token
 from config import dev
 from config import activities
+from config import channels_setup
 
 client = discord.Client()
 client.built = False
@@ -89,11 +90,7 @@ async def status_changer():
 roles_setup = ['pc','ps4','xbox','na','eu','aus']
 roles = {}
 
-channels_setup = {
-    "metallic_finder":433342103485939722,
-    "platform":415190853578129408,
-    "bot_testing":433253593332842507
-}
+
 channels={}
 
 commands={

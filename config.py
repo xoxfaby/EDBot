@@ -1,6 +1,11 @@
 import discord
 token=''
 dev=True
+channels_setup = {
+    "metallic_finder":433342103485939722,
+    "platform":415190853578129408,
+    "bot_testing":433253593332842507
+}
 activities = [
     discord.Activity(type=discord.ActivityType.watching,name="the rocks"),
     discord.Activity(type=discord.ActivityType.watching,name="the asteroids"),
