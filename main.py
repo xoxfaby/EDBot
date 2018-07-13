@@ -7,11 +7,13 @@ from random import choice
 from config import token
 from config import dev
 from config import activities
+from config import channels_setup
+from config import roles_setup
 
 client = discord.Client()
 client.built = False
 systems_json = {}
-zws = "​"
+zws = "​"   #zero width space for formatting in discord
 
 client.i = 0
 
@@ -48,9 +50,17 @@ async def metallic_search(message):
                 return
             for system in rsorted:
                 psystem = systems_json[system['name']]
-                value = f"{zws} **Security**: {psystem.get('security','')}   " \
-                        f"**Rings**: {psystem.get('rings','')}   " \
-                        f"**RES**: {psystem.get('res','')}   "
+                if psystem.get('res'):
+                    if psystem.get('res') == 'no':
+                        pRes = '**RES**: no'
+                    else:
+                        pRes = '**RES**: yes'
+                else:
+                    pRes = '**RES**: *<unknown>*'
+                value = ( f"{zws} **Security**: {psystem.get('security','')}   "
+                          f"**Rings**: {psystem.get('rings','')}   "
+                          + pRes )
+
                 embed.add_field(name=f"**{system['distance']}ly**   {system['name']}", value=value, inline=False)
 
             await message.channel.send(embed=embed)
@@ -86,16 +96,8 @@ async def status_changer():
         await client.change_presence(activity=choice(activities))
         await asyncio.sleep(60*60*3)
 
-roles_setup = ['pc','ps4','xbox','na','eu','aus']
 roles = {}
-
-channels_setup = {
-    "metallic_finder":433342103485939722,
-    "platform":415190853578129408,
-    "bot_testing":433253593332842507
-}
 channels={}
-
 commands={
     'metallic_finder':{
         '!':metallic_search
