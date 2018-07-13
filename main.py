@@ -13,7 +13,7 @@ from config import roles_setup
 client = discord.Client()
 client.built = False
 systems_json = {}
-zws = "​"
+zws = "​"   #zero width space for formatting in discord
 
 client.i = 0
 
@@ -50,9 +50,17 @@ async def metallic_search(message):
                 return
             for system in rsorted:
                 psystem = systems_json[system['name']]
-                value = f"{zws} **Security**: {psystem.get('security','')}   " \
-                        f"**Rings**: {psystem.get('rings','')}   " \
-                        f"**RES**: {psystem.get('res','')}   "
+                if psystem.get('res'):
+                    if psystem.get('res') == 'no':
+                        pRes = '**RES**: no'
+                    else:
+                        pRes = '**RES**: yes'
+                else:
+                    pRes = '**RES**: *<unknown>*'
+                value = ( f"{zws} **Security**: {psystem.get('security','')}   "
+                          f"**Rings**: {psystem.get('rings','')}   "
+                          + pRes )
+
                 embed.add_field(name=f"**{system['distance']}ly**   {system['name']}", value=value, inline=False)
 
             await message.channel.send(embed=embed)
