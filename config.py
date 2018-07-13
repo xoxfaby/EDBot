@@ -1,6 +1,6 @@
 import discord
 token=''
-dev=False
+dev=True
 activities = [
     discord.Activity(type=discord.ActivityType.watching,name="the rocks"),
     discord.Activity(type=discord.ActivityType.watching,name="the asteroids"),
